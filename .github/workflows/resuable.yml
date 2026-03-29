@@ -4,5 +4,5 @@ jobs:
   deploy: 
     runs-on: ubuntu-latest
     steps:
-      -name: Output Information
-       run: echo "This is a reusable workflow for deployment"
+      - name: Output Information
+        run: echo "This is a reusable workflow for deployment"
