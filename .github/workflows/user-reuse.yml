@@ -71,6 +71,17 @@ jobs:
     uses: ./.github/workflows/resuable.yml
     with: 
       artifact-name: dist-files
+    # secrets:
+    #   # Add any secrets required for deployment here
+    #   some-secret: ${{ secrets.some-secret }}
+  
+  print-deploy-result:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print deployment result
+        run: echo "Deployment result: ${{ needs.deploy.outputs.result }}"
+
   report:
     needs: [lint, deploy]
     if: failure()
@@ -79,4 +90,4 @@ jobs:
       - name: Output information
         run: |
           echo "Build failed. Please check the test report and build artifacts for more information."
-          echo "${{ github }}"
+          echo "${{ toJSON(github) }}"
